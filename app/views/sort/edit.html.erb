@@ -1,0 +1,6 @@
+<%= form_tag({controller: "sort", action: "update"}, method: "put") do %>
+    <%= label_tag(:name, "분류 이름") %>
+    <%= text_field_tag :name ,@csort.name, :placeholder =>"분류 이름을 입력해주세요." %>
+   
+    <%= submit_tag("추가") %>
+<% end %>

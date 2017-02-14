@@ -1,0 +1,19 @@
+<%= form_tag({controller: "cp", action: "update"}, method: "put") do %>
+    <%= label_tag(:name, "업소명") %>
+    <%= text_field_tag :name ,@company.name, :placeholder =>"업소명을 입력해주세요." %></br>
+    <%= label_tag(:c_postcode, "우편번호") %>
+    <%= text_field_tag :c_postcode ,@company.c_postcode, :placeholder =>"우편번호를 입력해주세요." %></br>
+    <%= label_tag(:c_address, "주소") %>
+    <%= text_field_tag :c_address ,@company.c_address, :placeholder =>"주소를 입력해주세요." %></br>
+    <%= label_tag(:c_daddress, "상세주소") %>
+    <%= text_field_tag :c_daddress ,@company.c_daddress, :placeholder =>"상세주소를 입력해주세요." %></br>
+    <%= label_tag(:tel, "전화번호") %>
+    <%= text_field_tag :tel ,@company.tel, :placeholder =>"전화번호를 입력해주세요." %></br>
+    <%= label_tag(:opentime, "오픈시간") %>
+    <%= text_field_tag :opentime ,@company.opentime, :placeholder =>"오픈시간을 입력해주세요." %></br>
+    <%= label_tag(:closetime, "마감시간") %>
+    <%= text_field_tag :closetime ,@company.closetime, :placeholder =>"마감시간을 입력해주세요." %></br>
+    <%= label_tag(:runtime, "runtime") %>
+    <%= text_field_tag :runtime ,(@company.runtime)/60, :placeholder =>"1팀 당 소요 시간을 입력해주세요." %>분</br>
+    <%= submit_tag("수정") %>
+<% end %>

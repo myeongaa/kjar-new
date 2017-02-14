@@ -1,0 +1,5 @@
+<%= link_to "분류 추가하기", new_sort_path %></br>
+
+<% @csorts.each do |c| %>
+    <%= link_to c.name, sort_path(c) %> </br>
+<% end %>

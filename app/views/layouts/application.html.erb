@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link type="text/css" rel="stylesheet" href="/main.css?=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <!--
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBM3uk40DW7g5LuX1zzdPIfTWK7NBuf3Q0"
+        async defer></script>
+        -->
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBM3uk40DW7g5LuX1zzdPIfTWK7NBuf3Q0"
+        async defer></script>
+</head>
+<body>
+  <nav class="navbar" role="navigation">
+    <% if user_signed_in? %>
+      <p>
+        <%= current_user.email   %>님
+        <%= link_to('로그아웃', destroy_user_session_path, :method => "delete") %>  
+      </p>
+    <% else %>
+      <p>
+        <%= link_to "login", new_user_session_path %>  
+      </p>
+    <% end %> 
+  </nav>
+  <header>
+    <div class="logoimg-class" id="logoimg-id">
+      <%= link_to root_path do %>
+        <h1><%= image_tag "/image/gggg.png", alt:"logo", id:"logoimg" %></h1>
+      <% end %>
+    </div>
+  </header>
+  <section>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </section>
+  <footer>
+    <p>Copyright &copy; 권진아리</p>
+  </footer>
+
+</body>
+</html>

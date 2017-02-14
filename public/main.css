@@ -1,0 +1,416 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+html,body{
+    margin:0;
+    width:100%;
+}
+a{
+    text-decoration: none;
+}
+input:focus{
+    outline: none;
+}
+nav{
+    background-color: #ffffff;
+    height:50px;
+}
+nav::after{
+    content: '';
+    display: block;
+    clear:both;
+}
+nav p{
+    float:right;
+    margin-right: 30px;
+}
+
+nav p a{
+    text-decoration: none;
+    color:#000;
+}
+
+header{
+    width:100%;
+    height:300px;
+    position: relative;
+}
+
+header a{
+    top:50%;
+    left: 50%;
+    
+}
+
+header .logoimg-class{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width:25%;
+}
+
+header a img{
+    display: block;
+    width:100%;
+}
+
+.container{
+    width:70%;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    line-height:150%;
+}
+.search-form{
+    margin-top: 7px;
+    margin-bottom:20px;
+}
+.search-box{
+    border : 3px solid #000;
+    width:50%;
+    padding:10px;
+    font-size:0.9em;
+}
+
+.search-submit{
+    background-color: #000;
+    border: 3px solid #000;
+    color:#fff;
+    font-size: 0.9em;
+    padding: 8px;
+    vertical-align: bottom;
+}
+
+.search-submit:hover{
+    border-color: #363636;
+    background-color: #363636;
+}
+
+footer{
+    width:100%;
+    bottom:0px;
+    height:30px;
+    text-align: center;
+}
+
+section{
+}
+
+.position-btn{
+    background: url(/image/position.png);
+    background-size: contain;
+    border:3px solid #fff;
+    width:50px;
+    height:50px;
+    padding:5px;
+    vertical-align: bottom;
+    float: left;
+}
+
+.position{
+    margin-left: auto;
+    margin-right: auto;
+    width:260px;
+}
+
+.position::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+#out{
+    border-width:3px 3px 3px 0px;
+    border-style: solid;
+    border-color:#fff;
+    height:44px;
+    width:200px;
+    float:left;
+}
+
+#message {
+    
+    font-size: 0.9em;
+}
+.sort-search{
+    width:70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:50px;
+    position: relative;
+}
+
+.sort-link{
+    border-radius: 50%;
+    border:1px solid #fff;
+    display: block;
+    width:200px;
+    height:200px;
+    padding:15px;
+}
+
+.sort-link:hover{
+   background: inherit;
+  z-index:-1;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  
+}
+
+.sort-link:hover .sort-link-text{
+    visibility: visible;
+}
+
+.sort-link-text{
+    /*visibility: hidden;*/
+    position: absolute;
+}
+
+
+.ch-grid {
+	margin: 20px 0 0 0;
+	padding: 0;
+	list-style: none;
+	display: block;
+	text-align: center;
+	width: 100%;
+	
+}
+
+.ch-grid:after,
+.ch-item:before {
+	content: '';
+    display: table;
+}
+
+.ch-grid:after {
+	clear: both;
+}
+
+.ch-grid li {
+	width: 240px;
+	height: 240px;
+	display: inline-block;
+	margin: 20px;
+	padding:20px;
+
+}
+.ch-item {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	overflow: hidden;
+	position: relative;
+	cursor: default;
+	box-shadow: 
+		inset 0 0 0 2px rgba(255,255,255,0.6),
+		0 1px 2px rgba(0,0,0,0.1);
+	transition: all 0.4s ease-in-out;
+}
+
+.ch-info a{
+    width:100%;
+    height:100%;
+}
+.ch-img-1 { 
+	background-image: url(/image/hospital.png);
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  
+}
+
+.ch-img-2 { 
+	background-image: url(/image/restaurant.png);
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.ch-info {
+	position: absolute;
+	background: rgba(105,100,100, 0.8);
+	width: inherit;
+	height: inherit;
+	border-radius: 50%;
+	overflow: hidden;
+	opacity: 0;
+	transition: all 0.4s ease-in-out;
+	transform: scale(0);
+}
+
+.ch-info h3 {
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 35px;
+	margin: 0 30px;
+	padding: 80px 0 0 0;
+	height: 140px;
+	font-family: 'Open Sans', Arial, sans-serif;
+	text-shadow: 
+		0 0 1px #fff, 
+		0 1px 2px rgba(0,0,0,0.3);
+}
+
+.ch-info h3 a{
+    color:#fff;
+}
+.ch-info p {
+	color: #fff;
+	padding: 10px 5px;
+	font-style: italic;
+	margin: 0 30px;
+	font-size: 12px;
+	border-top: 1px solid rgba(255,255,255,0.5);
+	opacity: 0;
+	transition: all 1s ease-in-out 0.4s;
+}
+
+.ch-info p a {
+	display: block;
+	color: rgba(255,255,255,0.7);
+	font-style: normal;
+	font-weight: 700;
+	text-transform: uppercase;
+	font-size: 9px;
+	letter-spacing: 1px;
+	padding-top: 4px;
+	font-family: 'Open Sans', Arial, sans-serif;
+}
+
+.ch-info p a:hover {
+	color: rgba(255,242,34, 0.8);
+}
+.ch-item:hover {
+	box-shadow: 
+		inset 0 0 0 1px rgba(255,255,255,0.1),
+		0 1px 2px rgba(0,0,0,0.1);
+}
+.ch-item:hover .ch-info {
+	transform: scale(1);
+	opacity: 1;
+}
+.ch-item:hover .ch-info p {
+	opacity: 1;
+}
+@media screen and (max-width:1024px) {
+     header #logoimg-id{
+         width:50%;
+     }   
+     
+     .container{
+         width:90%;
+     }
+}
+
+@media screen and (max-width:480px) {
+    nav{
+        /*visibility:hidden;*/
+    }
+    header{
+        height:200px;
+    }
+     header #logoimg-id{
+         width:90%;
+     }   
+     
+     .container{
+         width:100%;
+     }
+}
+
+#map {
+    width:300px;
+    height: 300px;
+    overflow: auto;
+    margin: 0 auto;
+    margin-top:25px;
+    margin-bottom:25px;
+}
+
+      
+.map-control {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
+        font-family: 'Roboto','sans-serif';
+        margin: 10px;
+        /* Hide the control initially, to prevent it from appearing
+           before the map loads. */
+       
+      }
+      /* Display the control once it is inside the map. */
+      #map .map-control { display: none; }
+
+      .selector-control {
+        font-size: 14px;
+        line-height: 30px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+
+fieldset, label { margin: 0; padding: 0; }
+
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+
+
+a:link,
+a:visited{
+    color:#3F51B5;
+    
+    /*
+    color:#F9A825;
+    */
+}
+
+a:hover,
+a:active {
+    color:#9FA8DA;
+    /*
+    color:#FF6F00;
+    */
+}

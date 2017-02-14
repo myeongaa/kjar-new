@@ -1,0 +1,98 @@
+
+
+<div class="position">
+    <button type="button" onclick="requestPosition()" class="position-btn"></button>
+    <div id="message"></div>
+</div>
+<%= form_tag({controller: "home", action: "search"}, method: "get",class:"search-form") do %>
+    <%= hidden_field_tag (:latitude ) %>
+    <%= hidden_field_tag (:longitude) %>
+    <%= text_field_tag :c_name ,nil, :placeholder =>"업소명을 입력해주세요." , class:"search-box"%>
+    <%= submit_tag("검색",class:"search-submit") %>
+<% end %>
+
+<ul class="ch-grid">
+	<li>
+		<div class="ch-item ch-img-1">
+			<div class="ch-info">
+			    
+				<h3><%= link_to "병원", home_sortp_path(1) %></h3>
+				<!--<p>병원 <%= link_to "병원",home_sortp_path(1) %></p>-->
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="ch-item ch-img-2">
+			<div class="ch-info">
+				<h3><%= link_to "음식점", home_sortp_path(2) %></h3>
+				
+			</div>
+		</div>
+	</li>
+</ul>
+
+<script>
+    function setText(val, e) {
+        document.getElementById(e).value = val;
+    }
+    
+    function insertText(val, e) {
+        document.getElementById(e).value += val;
+    }
+    
+    var nav = null; 
+    
+    function requestPosition() {
+      if (nav == null) {
+          nav = window.navigator;
+      }
+      if (nav != null) {
+          var geoloc = nav.geolocation;
+          if (geoloc != null) {
+              geoloc.getCurrentPosition(successCallback);
+          }
+          else {
+              alert("geolocation not supported");
+          }
+      }
+      else {
+          alert("Navigator not found");
+      }
+    }
+
+
+    function successCallback(position)
+        {
+           setText(position.coords.latitude, "latitude");
+           setText(position.coords.longitude, "longitude");
+        
+        var lat = position.coords.latitude; // 위도
+        var lng = position.coords.longitude; // 경도
+        var geocode = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng;
+        jQuery.ajax({
+            url: geocode,
+            type: 'POST',
+               success: function(myJSONResult){
+                        if(myJSONResult.status == 'OK') {
+                            var tag = "";
+                            var i;
+                             tag += myJSONResult.results[0].formatted_address+" <br />";
+                            
+                            document.getElementById("message").innerHTML = tag;
+                        } else if(myJSONResult.status == 'ZERO_RESULTS') {
+                            alert("지오코딩이 성공했지만 반환된 결과가 없음을 나타냅니다.\n\n이는 지오코딩이 존재하지 않는 address 또는 원격 지역의 latlng을 전달받는 경우 발생할 수 있습니다.")
+                        } else if(myJSONResult.status == 'OVER_QUERY_LIMIT') {
+                            alert("할당량이 초과되었습니다.");
+                        } else if(myJSONResult.status == 'REQUEST_DENIED') {
+                            alert("요청이 거부되었습니다.\n\n대부분의 경우 sensor 매개변수가 없기 때문입니다.");
+                        } else if(myJSONResult.status == 'INVALID_REQUEST') {
+                            alert("일반적으로 쿼리(address 또는 latlng)가 누락되었음을 나타냅니다.");
+                        }
+                }
+        });
+     
+    
+    googleapisView();
+    
+        }
+</script>

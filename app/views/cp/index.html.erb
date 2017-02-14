@@ -1,0 +1,5 @@
+<%= link_to "업체 추가", new_cp_path %></br>
+
+<% @companies.each do |c| %>
+    <%= link_to c.name, cp_path(c) %></br>
+<% end %>
