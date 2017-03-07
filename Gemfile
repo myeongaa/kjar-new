@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'fog-aws'
+gem 'carrierwave', '~> 1.0'
+gem 'fog'
 gem 'devise'
 gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record

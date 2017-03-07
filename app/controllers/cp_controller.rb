@@ -30,7 +30,7 @@ class CpController < ApplicationController
   def show
     @company = Company.find_by_id(params[:id])
     
-    @boards = Board.where(:company_id => params[:id])
+    @boards = Board.where(:company_id => params[:id]).reverse
   end
 
   def update

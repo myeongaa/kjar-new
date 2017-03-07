@@ -1,35 +1,75 @@
-<%= @company.name %></br>
-<%= @company.c_postcode %></br>
-<%= @company.c_address %></br>
-<%= @company.c_daddress %></br>
-<%= @company.tel %></br>
-<%= @company.opentime %></br>
-<%= @company.closetime %></br>
-<%= (@company.runtime)/60 %>분</br>
-<%= hidden_field_tag :latitude , @company.com_lat %>
-<%= hidden_field_tag :longitude, @company.com_lng %>
+<!-- 업체 이름-->
+<div class="cp-sort">
+  <span>
+  <%= link_to "홈",home_index_path %> > 
+  <%= link_to @company.csort.name, sort_path(@company.csort.id) %>
+  </span>
+</div>
+<div class="cp-name">
+  <h2><%= @company.name %></h2>
+</div>
 
-<%= link_to "수정", edit_cp_path(@company.id) %>
-<%= link_to "삭제", cp_path(@company.id), :method => "delete" %>
-<div id="style-selector-control"  class="map-control">
+<!-- 정보리뷰 nav -->
+<div class="infor-review">
+  <p class="btn" rel="div1">정보</p>
+  <p class="btn" rel="div2">리뷰</p>
+</div>
+<!-- 정보 section-->
+
+<div id="div1"  class="company-section-div">
+ <div class="company-section">
+     <!-- 업체 정보 -->
+    <%= @company.c_postcode %></br>
+    <%= @company.c_address %></br>
+    <%= @company.c_daddress %></br>
+    <%= @company.tel %></br>
+    <%= @company.opentime %></br>
+    <%= @company.closetime %></br>
+    <%= (@company.runtime)/60 %>분</br>
+    <%= hidden_field_tag :latitude , @company.com_lat %>
+    <%= hidden_field_tag :longitude, @company.com_lng %>
+  
+      <!--<%= link_to "수정", edit_cp_path(@company.id) %>
+          <%= link_to "삭제", cp_path(@company.id), :method => "delete" %>   -->   </div>
+    <!-- 지도 -->
+    <div id="style-selector-control"  class="map-control" >
       <select id="style-selector" class="selector-control">
         <option value="default">Default</option>
         <option value="night">Night mode</option>
         <option value="retro" selected="selected">Retro</option>
         <option value="hiding">Hide features</option>
       </select>
+    </div>
+    <div id="map"></div>
+    
 </div>
-
-<%= link_to "리뷰 남기기", new_cp_board_path(params[:id]) %></br>
-
-
- <div id="map"></div>
- <%= @boards.length %>개의 리뷰가 있습니다. </br>
- <% @boards.each do |b| %>
-   <%= b.title %> <%= b.user.email %>님</br>
- <% end %>
-
+<!-- 리뷰 section -->
+<div id="div2" style="display:none"; class="company-section-div">
+  <div class="company-section">
+  <%= link_to "리뷰 남기기", new_cp_board_path(params[:id]) %></br>
+  <%= @boards.length %>개의 리뷰가 있습니다. </br>
+    <% @boards.each do |b| %>
+      <div class="review-row">
+        <fieldset class="rating" >
+          <% for i in 0..(4-b.star.to_i) %>
+            <label class = "full" for="star5" title="Awesome - 5 stars"></label>
+          <% end %>
+          <% for i in 1..(b.star.to_i) %>
+            <label class = "full" for="star5" title="Awesome - 5 stars" style="color:#FFD700;"></label>
+          <% end %>
+        </fieldset></br>
+        <span><%= link_to b.title,cp_board_path(@company.id,b.id) %> <%= b.user.email %>님</span>
+      </div>
+    <% end %> </div>
+</div>
+ 
 <script type="text/javascript" >
+/* 정보 리뷰 nav */
+$('p').on('click', function(){
+   var target = $(this).attr('rel');
+   $("#"+target).show().siblings(".company-section-div").hide();
+});
+
 /*
 var map,trafficLayer;          
 var vis = false;
@@ -306,7 +346,9 @@ function initMap(){
         //map.fitBounds();
         
     }, 20000000000);*/
-});    
+  });    
+
+  
 </script>
   
     

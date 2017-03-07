@@ -3,18 +3,20 @@ class BoardController < ApplicationController
   end
 
   def create
-    board = Board.new
-    board.title = params[:title]
-    board.content = params[:content]
-    board.company_id = params[:company_id].to_i
-    board.user_id = current_user.id
-    board.star = params[:rating]
-    board.save
-    
-    redirect_to cp_path(params[:company_id])
+    board = Board.new(title: params[:title], content: params[:content], company_id: params[:company_id].to_i, user_id: current_user.id, star: params[:rating])
+    uploader = KjarUploader.new
+    file = params[:pic]
+    uploader.store!(file)
+    board.image_url = uploader.url
+    if board.save
+      redirect_to cp_path(params[:cp_id])
+    else
+      render :text => board.errors.messages
+    end
   end
 
   def new
+    @board = Board.new
     if user_signed_in?
       
     else
@@ -26,6 +28,7 @@ class BoardController < ApplicationController
   end
 
   def show
+    @board = Board.find(params[:id])
   end
 
   def update

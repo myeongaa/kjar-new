@@ -17,10 +17,11 @@ ActiveRecord::Schema.define(version: 20170207025206) do
     t.string   "title"
     t.text     "content"
     t.float    "star"
+    t.string   "image_url",  default: ""
     t.integer  "user_id"
     t.integer  "company_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "companies", force: :cascade do |t|
