@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     resources :board  
   end
   
+  #phonegap_request
+  get 'phonegap_request/sort_request'
+  get 'phonegap_request/login_request'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

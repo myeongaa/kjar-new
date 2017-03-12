@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <link type="text/css" rel="stylesheet" href="/main.css?=1" />
+  <link type="text/css" rel="stylesheet" href="/main.css?=0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <!--
@@ -18,21 +18,48 @@
 </head>
 <body>
   <nav class="navbar" role="navigation">
-    <% if user_signed_in? %>
-      <p>
-        <%= current_user.email   %>님
-        <%= link_to('로그아웃', destroy_user_session_path, :method => "delete") %>  
-      </p>
-    <% else %>
-      <p>
-        <%= link_to "login", new_user_session_path %>  
-      </p>
-    <% end %> 
+    
+    <div class="div-user">
+      <ul class="div-user-ul">
+        <div class="nav-div"></div>
+        
+        <div class="nav-user">
+          <% if user_signed_in? %>
+            <li><%= current_user.email   %>님</li>
+            <li><a href="#">마이페이지</a></li>
+            <li><%= link_to('로그아웃', destroy_user_session_path, :method => "delete") %></li>  
+            
+          <% else %>
+            <li><%= link_to "로그인", new_user_session_path %></li>
+          <% end %>
+        </div>
+        <div class="nav-button">
+          <img src="/image/a.png" class="nav-button-img"/>
+        </div>
+        <div class="nav-toggle" style="display:none">
+          <span>
+            <img src="/image/dir.png" />
+          </span>
+          <ul>
+            <% if user_signed_in? %>
+            <li><%= current_user.email   %>님</li>
+            <li><a href="#">마이페이지</a></li>
+            <li><%= link_to('로그아웃', destroy_user_session_path, :method => "delete") %></li>  
+            
+          <% else %>
+            <li><%= link_to "로그인", new_user_session_path %></li>
+          <% end %>
+          <li><a href="#">공지사항</a></li>
+          <li><a href="#">Q&A</a></li>
+          </ul>
+        </div>
+      </ul>
+    </div>
   </nav>
   <header>
     <div class="logoimg-class" id="logoimg-id">
       <%= link_to root_path do %>
-        <h1><%= image_tag "/image/gggg.png", alt:"logo", id:"logoimg" %></h1>
+        <h1><%= image_tag "/image/logo.png", alt:"logo", id:"logoimg" %></h1>
       <% end %>
     </div>
   </header>
@@ -44,6 +71,15 @@
   <footer>
     <p>Copyright &copy; 권진아리</p>
   </footer>
-
+  <script>
+    $(".nav-button-img").click(function(){
+      $(".nav-toggle").slideDown();
+      
+    });
+    
+    $(".nav-toggle span img").click(function(){
+      $(".nav-toggle").slideUp();
+    })
+  </script>
 </body>
 </html>

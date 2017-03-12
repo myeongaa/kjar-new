@@ -11,6 +11,7 @@ html,body{
     margin:0;
     width:100%;
     font-family: 'Godo';
+    font-size:1.1em;
 }
 body{
     background-color: #F9F9F5;
@@ -22,6 +23,8 @@ a{
 input:focus{
     outline: none;
 }
+
+/* nav */
 nav{
     background-color: #F9F9F5;
     height:50px;
@@ -37,12 +40,68 @@ nav p{
     color:#2A2B2C;
 }
 
-nav p a{
+nav li a{
     text-decoration: none;
     color:#2A2B2C;
 }
-nav p a:hover{
+nav li a:hover{
     color:#BAB5B5;
+}
+
+nav .div-user-ul li{
+    list-style-type: none;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+nav .div-user-ul{
+    display:flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content:space-between;
+}
+nav ul div{
+    display: flex;
+    flex-direction:row;
+    margin-right:10px;
+    flex-wrap:nowrap;
+    
+}
+
+.nav-toggle{
+    position: fixed;
+    bottom:0;
+    right:0;
+    width:100%;
+    height:100%;
+    background-color: #B6A89B;
+    z-index:100;
+    display:flex;
+    flex-direction:column;
+    
+}
+
+.nav-toggle ul{
+    display:flex;
+    flex-direction:column;
+    
+}
+
+.nav-toggle img{
+    float:right;
+    width:40px;
+    margin-top:20px;
+    margin-right: 20px;
+}
+
+.nav-toggle img::after{
+    content: '';
+    display: block;
+    clear: both;
+    
+}
+
+.nav-button{
+    display: none;
 }
 
 header{
@@ -329,12 +388,53 @@ section{
     
 }
 
+.infor-review-re{
+    width:100%;
+    border-bottom : 2px solid #2A2B2C;
+
+}
+
+.infor-review-in{
+    width:100%;
+    background-color:#fff;
+    border-left : 2px solid #2A2B2C;
+    border-right : 2px solid #2A2B2C;
+    border-top : 2px solid #2A2B2C;
+}
+
+.company-section-div{
+    background-color:#fff;
+    border-left : 2px solid #2A2B2C;
+    border-right : 2px solid #2A2B2C;
+    border-bottom : 2px solid #2A2B2C;
+    padding:30px;
+}
+
 .review-row{
     display: flex;
     flex-direction:row;
     justify-content: center;
 }
 
+/* 정보 - 서비스 */
+.infor-service{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    
+}
+
+.com-infor{
+    width:75%;
+    margin:2px;
+}
+
+.com-service{
+    width:25%;
+    margin:2px;
+    background-color:#fff;
+    border:2px solid #2A2B2C;
+}
 
 #map {
     width:300px;
@@ -423,6 +523,7 @@ a:active {
     border:2px solid #2A2B2C;
     color:#2A2B2C;
     padding:10px;
+    margin-bottom:10px;
 }
 
 
@@ -463,8 +564,22 @@ a:active {
 }
 
 @media screen and (max-width:480px) {
-    nav{
-        /*visibility:hidden;*/
+    .nav-user li{
+        display:none;
+    }
+    .nav-div{
+        display:none;
+    }
+    .nav-button{
+        display:block;
+    }
+    
+    .div-user ul{
+        padding-left: 7px;
+    }
+    
+    .nav-button img{
+        width:40px;
     }
     header{
         height:200px;

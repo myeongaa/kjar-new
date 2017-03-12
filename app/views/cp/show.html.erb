@@ -8,346 +8,380 @@
 <div class="cp-name">
   <h2><%= @company.name %></h2>
 </div>
-
-<!-- 정보리뷰 nav -->
-<div class="infor-review">
-  <p class="btn" rel="div1">정보</p>
-  <p class="btn" rel="div2">리뷰</p>
-</div>
-<!-- 정보 section-->
-
-<div id="div1"  class="company-section-div">
- <div class="company-section">
-     <!-- 업체 정보 -->
-    <%= @company.c_postcode %></br>
-    <%= @company.c_address %></br>
-    <%= @company.c_daddress %></br>
-    <%= @company.tel %></br>
-    <%= @company.opentime %></br>
-    <%= @company.closetime %></br>
-    <%= (@company.runtime)/60 %>분</br>
-    <%= hidden_field_tag :latitude , @company.com_lat %>
-    <%= hidden_field_tag :longitude, @company.com_lng %>
-  
-      <!--<%= link_to "수정", edit_cp_path(@company.id) %>
-          <%= link_to "삭제", cp_path(@company.id), :method => "delete" %>   -->   </div>
-    <!-- 지도 -->
-    <div id="style-selector-control"  class="map-control" >
-      <select id="style-selector" class="selector-control">
-        <option value="default">Default</option>
-        <option value="night">Night mode</option>
-        <option value="retro" selected="selected">Retro</option>
-        <option value="hiding">Hide features</option>
-      </select>
+<!-- 정보서비스 -->
+<div class="infor-service">
+  <div class="com-infor">
+    <!-- 정보리뷰 nav -->
+    <div class="infor-review">
+      <div class="infor-review-in"><p class="btn" rel="div1">정보</p></div>
+      <div class="infor-review-re"><p class="btn" rel="div2">리뷰</p></div>
     </div>
-    <div id="map"></div>
+    <!-- 정보 section-->
     
-</div>
-<!-- 리뷰 section -->
-<div id="div2" style="display:none"; class="company-section-div">
-  <div class="company-section">
-  <%= link_to "리뷰 남기기", new_cp_board_path(params[:id]) %></br>
-  <%= @boards.length %>개의 리뷰가 있습니다. </br>
-    <% @boards.each do |b| %>
-      <div class="review-row">
-        <fieldset class="rating" >
-          <% for i in 0..(4-b.star.to_i) %>
-            <label class = "full" for="star5" title="Awesome - 5 stars"></label>
-          <% end %>
-          <% for i in 1..(b.star.to_i) %>
-            <label class = "full" for="star5" title="Awesome - 5 stars" style="color:#FFD700;"></label>
-          <% end %>
-        </fieldset></br>
-        <span><%= link_to b.title,cp_board_path(@company.id,b.id) %> <%= b.user.email %>님</span>
+    <div id="div1"  class="company-section-div">
+     <div class="company-section">
+         <!-- 업체 정보 -->
+        <%= @company.c_postcode %></br>
+        <%= @company.c_address %></br>
+        <%= @company.c_daddress %></br>
+        <%= @company.tel %></br>
+        <%= @company.opentime %></br>
+        <%= @company.closetime %></br>
+        <%= (@company.runtime)/60 %>분</br>
+        <%= hidden_field_tag :latitude , @company.com_lat %>
+        <%= hidden_field_tag :longitude, @company.com_lng %>
+      
+          <!--<%= link_to "수정", edit_cp_path(@company.id) %>
+              <%= link_to "삭제", cp_path(@company.id), :method => "delete" %>   -->   </div>
+        <!-- 지도 -->
+        <div id="style-selector-control"  class="map-control" >
+          <select id="style-selector" class="selector-control">
+            <option value="default">Default</option>
+            <option value="night">Night mode</option>
+            <option value="retro" selected="selected">Retro</option>
+            <option value="hiding">Hide features</option>
+          </select>
+        </div>
+        <div id="map"></div>
+    </div>
+    <!-- 리뷰 section -->
+    <div id="div2" style="display:none"; class="company-section-div">
+      <div class="company-section">
+      <%= link_to "리뷰 남기기", new_cp_board_path(params[:id]) %></br>
+      <%= @boards.length %>개의 리뷰가 있습니다. </br>
+        <% @boards.each do |b| %>
+          <div class="review-row">
+            <fieldset class="rating" >
+              <% for i in 0..(4-b.star.to_i) %>
+                <label class = "full" for="star5" title="Awesome - 5 stars"></label>
+              <% end %>
+              <% for i in 1..(b.star.to_i) %>
+                <label class = "full" for="star5" title="Awesome - 5 stars" style="color:#FFD700;"></label>
+              <% end %>
+            </fieldset></br>
+            <span><%= link_to b.title,cp_board_path(@company.id,b.id) %> <%= b.user.email %>님</span>
+          </div>
+        <% end %> 
       </div>
-    <% end %> </div>
+    </div>
+  </div>
+  <div class="com-service">
+        여기에 번호표랑 예약넣을꺼양
+  </div>
 </div>
  
 <script type="text/javascript" >
-/* 정보 리뷰 nav */
-$('p').on('click', function(){
-   var target = $(this).attr('rel');
-   $("#"+target).show().siblings(".company-section-div").hide();
-});
+  /* 정보 리뷰 nav */
+  $('p').on('click', function(){
+     var target = $(this).attr('rel');
+     $("#"+target).show().siblings(".company-section-div").hide();
+     
+  });
+  
+  $(".infor-review-in").click(function(){
+    $(this).css("border","none");
+    $(this).css("background-color","#fff");
+    $(this).css("border-left","2px solid #2A2B2C");
+    $(this).css("border-right","2px solid #2A2B2C");
+    $(this).css("border-top","2px solid #2A2B2C");
+    $(".infor-review-re").css("background-color","#F9F9F5");
+    $(".infor-review-re").css("border","none");
+    $(".infor-review-re").css("border-bottom","2px solid #2A2B2C");
+    
+  });
+  
+  $(".infor-review-re").click(function(){
+    $(this).css("border","none");
+    $(this).css("background-color","#fff");
+    $(this).css("border-left","2px solid #2A2B2C");
+    $(this).css("border-right","2px solid #2A2B2C");
+    $(this).css("border-top","2px solid #2A2B2C");
+    $(".infor-review-in").css("background-color","#F9F9F5");
+    $(".infor-review-in").css("border","none");
+    $(".infor-review-in").css("border-bottom","2px solid #2A2B2C");
 
-/*
-var map,trafficLayer;          
-var vis = false;
-function refreshMap()
-        {               
-            if (vis)            
-            {
-                trafficLayer.setMap(null)
-                vis = false;
-            }
-            else
-            {
-                trafficLayer.setMap(map);
-                vis = true;
-            }            
-        } 
- */
-function initMap(){
-  var latitude = parseFloat($('#latitude').val());
-  var longitude = parseFloat($('#longitude').val());
-      var myLatLng = {lat: latitude, lng: longitude};
-        // Create the map with no initial style specified.
-        // It therefore has default styling.
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: new google.maps.LatLng(latitude, longitude),//myLatLng,
-          zoom: 15,
-          mapTypeControl: false
-        });
-        
-        
-        // Add a style-selector control to the map.
-        var styleControl = document.getElementById('style-selector-control');
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(styleControl);
-
-        // Set the map's style to the initial value of the selector.
-        var styleSelector = document.getElementById('style-selector');
-        map.setOptions({styles: styles[styleSelector.value]});
-
-        // Apply new JSON when the user selects a different style.
-        styleSelector.addEventListener('change', function() {
+  });
+  
+  /*
+  
+  
+  var map,trafficLayer;          
+  var vis = false;
+  function refreshMap()
+          {               
+              if (vis)            
+              {
+                  trafficLayer.setMap(null)
+                  vis = false;
+              }
+              else
+              {
+                  trafficLayer.setMap(map);
+                  vis = true;
+              }            
+          } 
+   */
+  function initMap(){
+    var latitude = parseFloat($('#latitude').val());
+    var longitude = parseFloat($('#longitude').val());
+        var myLatLng = {lat: latitude, lng: longitude};
+          // Create the map with no initial style specified.
+          // It therefore has default styling.
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: new google.maps.LatLng(latitude, longitude),//myLatLng,
+            zoom: 15,
+            mapTypeControl: false
+          });
+          
+          
+          // Add a style-selector control to the map.
+          var styleControl = document.getElementById('style-selector-control');
+          map.controls[google.maps.ControlPosition.TOP_LEFT].push(styleControl);
+  
+          // Set the map's style to the initial value of the selector.
+          var styleSelector = document.getElementById('style-selector');
           map.setOptions({styles: styles[styleSelector.value]});
-        });
-        
-        setInterval(function ()
+  
+          // Apply new JSON when the user selects a different style.
+          styleSelector.addEventListener('change', function() {
+            map.setOptions({styles: styles[styleSelector.value]});
+          });
+          
+          setInterval(function ()
+              {
+                  //refreshMap();
+              }, 3000);
+              
+          var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+          });
+          
+          //return new google.maps.LatLng(latitude, longitude);
+        }
+  
+        var styles = {
+          default: null,
+          night: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
             {
-                //refreshMap();
-            }, 3000);
-            
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          title: 'Hello World!'
-        });
-        
-        //return new google.maps.LatLng(latitude, longitude);
-      }
-
-      var styles = {
-        default: null,
-        night: [
-          {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-          {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-          {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-          {
-            featureType: 'administrative.locality',
-            elementType: 'labels.text.fill',
-            stylers: [{color: '#d59563'}]
-          },
-          {
-            featureType: 'poi',
-            elementType: 'labels.text.fill',
-            stylers: [{color: '#d59563'}]
-          },
-          {
-            featureType: 'poi.park',
-            elementType: 'geometry',
-            stylers: [{color: '#263c3f'}]
-          },
-          {
-            featureType: 'poi.park',
-            elementType: 'labels.text.fill',
-            stylers: [{color: '#6b9a76'}]
-          },
-          {
-            featureType: 'road',
-            elementType: 'geometry',
-            stylers: [{color: '#38414e'}]
-          },
-          {
-            featureType: 'road',
-            elementType: 'geometry.stroke',
-            stylers: [{color: '#212a37'}]
-          },
-          {
-            featureType: 'road',
-            elementType: 'labels.text.fill',
-            stylers: [{color: '#9ca5b3'}]
-          },
-          {
-            featureType: 'road.highway',
-            elementType: 'geometry',
-            stylers: [{color: '#746855'}]
-          },
-          {
-            featureType: 'road.highway',
-            elementType: 'geometry.stroke',
-            stylers: [{color: '#1f2835'}]
-          },
-          {
-            featureType: 'road.highway',
-            elementType: 'labels.text.fill',
-            stylers: [{color: '#f3d19c'}]
-          },
-          {
-            featureType: 'transit',
-            elementType: 'geometry',
-            stylers: [{color: '#2f3948'}]
-          },
-          {
-            featureType: 'transit.station',
-            elementType: 'labels.text.fill',
-            stylers: [{color: '#d59563'}]
-          },
-          {
-            featureType: 'water',
-            elementType: 'geometry',
-            stylers: [{color: '#17263c'}]
-          },
-          {
-            featureType: 'water',
-            elementType: 'labels.text.fill',
-            stylers: [{color: '#515c6d'}]
-          },
-          {
-            featureType: 'water',
-            elementType: 'labels.text.stroke',
-            stylers: [{color: '#17263c'}]
-          }
-        ],
-
-        retro: [
-          {elementType: 'geometry', stylers: [{color: '#ebe3cd'}]},
-          {elementType: 'labels.text.fill', stylers: [{color: '#523735'}]},
-          {elementType: 'labels.text.stroke', stylers: [{color: '#f5f1e6'}]},
-          {
-            featureType: 'administrative',
-            elementType: 'geometry.stroke',
-            stylers: [{color: '#c9b2a6'}]
-          },
-          {
-            featureType: 'administrative.land_parcel',
-            elementType: 'geometry.stroke',
-            stylers: [{color: '#dcd2be'}]
-          },
-          {
-            featureType: 'administrative.land_parcel',
-            elementType: 'labels.text.fill',
-            stylers: [{color: '#ae9e90'}]
-          },
-          {
-            featureType: 'landscape.natural',
-            elementType: 'geometry',
-            stylers: [{color: '#dfd2ae'}]
-          },
-          {
-            featureType: 'poi',
-            elementType: 'geometry',
-            stylers: [{color: '#dfd2ae'}]
-          },
-          {
-            featureType: 'poi',
-            elementType: 'labels.text.fill',
-            stylers: [{color: '#93817c'}]
-          },
-          {
-            featureType: 'poi.park',
-            elementType: 'geometry.fill',
-            stylers: [{color: '#a5b076'}]
-          },
-          {
-            featureType: 'poi.park',
-            elementType: 'labels.text.fill',
-            stylers: [{color: '#447530'}]
-          },
-          {
-            featureType: 'road',
-            elementType: 'geometry',
-            stylers: [{color: '#f5f1e6'}]
-          },
-          {
-            featureType: 'road.arterial',
-            elementType: 'geometry',
-            stylers: [{color: '#fdfcf8'}]
-          },
-          {
-            featureType: 'road.highway',
-            elementType: 'geometry',
-            stylers: [{color: '#f8c967'}]
-          },
-          {
-            featureType: 'road.highway',
-            elementType: 'geometry.stroke',
-            stylers: [{color: '#e9bc62'}]
-          },
-          {
-            featureType: 'road.highway.controlled_access',
-            elementType: 'geometry',
-            stylers: [{color: '#e98d58'}]
-          },
-          {
-            featureType: 'road.highway.controlled_access',
-            elementType: 'geometry.stroke',
-            stylers: [{color: '#db8555'}]
-          },
-          {
-            featureType: 'road.local',
-            elementType: 'labels.text.fill',
-            stylers: [{color: '#806b63'}]
-          },
-          {
-            featureType: 'transit.line',
-            elementType: 'geometry',
-            stylers: [{color: '#dfd2ae'}]
-          },
-          {
-            featureType: 'transit.line',
-            elementType: 'labels.text.fill',
-            stylers: [{color: '#8f7d77'}]
-          },
-          {
-            featureType: 'transit.line',
-            elementType: 'labels.text.stroke',
-            stylers: [{color: '#ebe3cd'}]
-          },
-          {
-            featureType: 'transit.station',
-            elementType: 'geometry',
-            stylers: [{color: '#dfd2ae'}]
-          },
-          {
-            featureType: 'water',
-            elementType: 'geometry.fill',
-            stylers: [{color: '#b9d3c2'}]
-          },
-          {
-            featureType: 'water',
-            elementType: 'labels.text.fill',
-            stylers: [{color: '#92998d'}]
-          }
-        ],
-
-        hiding: [
-          {
-            featureType: 'poi.business',
-            stylers: [{visibility: 'off'}]
-          },
-          {
-            featureType: 'transit',
-            elementType: 'labels.icon',
-            stylers: [{visibility: 'off'}]
-          }
-        ]
-        
-      };
-  $(document).ready(function () {
-    initMap();
-    
-    
-    /*몽아바봉
-    var bounds = new google.maps.LatLngBounds(ll.lat, ll.lng);
-    setInterval(function () {
-        google.maps.event.trigger(map, 'resize');
-        map.fitBounds(bounds);
-        //map.fitBounds();
-        
-    }, 20000000000);*/
-  });    
-
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ],
+  
+          retro: [
+            {elementType: 'geometry', stylers: [{color: '#ebe3cd'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#523735'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#f5f1e6'}]},
+            {
+              featureType: 'administrative',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#c9b2a6'}]
+            },
+            {
+              featureType: 'administrative.land_parcel',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#dcd2be'}]
+            },
+            {
+              featureType: 'administrative.land_parcel',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#ae9e90'}]
+            },
+            {
+              featureType: 'landscape.natural',
+              elementType: 'geometry',
+              stylers: [{color: '#dfd2ae'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'geometry',
+              stylers: [{color: '#dfd2ae'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#93817c'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry.fill',
+              stylers: [{color: '#a5b076'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#447530'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#f5f1e6'}]
+            },
+            {
+              featureType: 'road.arterial',
+              elementType: 'geometry',
+              stylers: [{color: '#fdfcf8'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#f8c967'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#e9bc62'}]
+            },
+            {
+              featureType: 'road.highway.controlled_access',
+              elementType: 'geometry',
+              stylers: [{color: '#e98d58'}]
+            },
+            {
+              featureType: 'road.highway.controlled_access',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#db8555'}]
+            },
+            {
+              featureType: 'road.local',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#806b63'}]
+            },
+            {
+              featureType: 'transit.line',
+              elementType: 'geometry',
+              stylers: [{color: '#dfd2ae'}]
+            },
+            {
+              featureType: 'transit.line',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#8f7d77'}]
+            },
+            {
+              featureType: 'transit.line',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#ebe3cd'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'geometry',
+              stylers: [{color: '#dfd2ae'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry.fill',
+              stylers: [{color: '#b9d3c2'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#92998d'}]
+            }
+          ],
+  
+          hiding: [
+            {
+              featureType: 'poi.business',
+              stylers: [{visibility: 'off'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'labels.icon',
+              stylers: [{visibility: 'off'}]
+            }
+          ]
+          
+        };
+    $(document).ready(function () {
+      initMap();
+      
+      
+      /*몽아바봉
+      var bounds = new google.maps.LatLngBounds(ll.lat, ll.lng);
+      setInterval(function () {
+          google.maps.event.trigger(map, 'resize');
+          map.fitBounds(bounds);
+          //map.fitBounds();
+          
+      }, 20000000000);*/
+    });    
+  
   
 </script>
   

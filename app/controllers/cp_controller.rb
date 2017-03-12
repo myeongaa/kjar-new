@@ -21,6 +21,7 @@ class CpController < ApplicationController
 
   def new
     @csorts = Csort.all
+    @company = Company.new
   end
 
   def edit
@@ -53,4 +54,6 @@ class CpController < ApplicationController
     
     redirect_to cp_index_path
   end
+  
+  
 end

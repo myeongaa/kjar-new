@@ -1,0 +1,2 @@
+module PhonegapRequestHelper
+end
