@@ -1,0 +1,106 @@
+<%= hidden_field_tag(:company_id, params[:cp_id]) %>
+
+<% @reservations.each do |r| %>
+    
+    <% if r.confirm_num.to_s == "1" %>
+        
+        
+        <%= User.find(r.user_id).email %>님
+        <%= r.reserve_time %>
+        <%= r.reserve_date %>
+        <%= r.requestmenu %>
+        <%= r.person_num %></br>
+        
+        <button class="mymodalLink" value="<%= r.id %>">보기</button></br>
+        <div id="mymodalLayer_<%= r.id %>" class="mymodalLayer">
+            <div class="mymodalContent" id="mymodalContent_<%= r.id %>" >
+                <%= label_tag(:comment, "전달 사항") %>
+                <%= text_field_tag :comment ,nil, :placeholder =>"전달 사항을 입력해주세요.",id: 'comment_'+r.id.to_s %>
+                <button class="confirm_button" value="<%= r.id %>">승인</button>
+                <button class="reject_button" value="<%= r.id %>">거절</button>
+                <button type="button" class="modal_close">닫기</button>
+            </div>
+        </div>     
+        
+    <% elsif r.confirm_num.to_s == "2" %>
+        승인 된 예약
+        <%= User.find(r.user_id).email %>님
+        <%= r.reserve_time %>
+        <%= r.reserve_date %>
+        <%= r.requestmenu %>
+        <%= r.person_num %></br>
+    <% else %>
+        거절 된 예약
+        <%= User.find(r.user_id).email %>님
+        <%= r.reserve_time %>
+        <%= r.reserve_date %>
+        <%= r.requestmenu %>
+        <%= r.person_num %></br>
+    <% end %>
+<% end %>
+
+<script>
+
+    $(function() {
+        $('.mymodalLink').click(function(){
+          //alert("Hello! I am an alert box!");
+        var modallinkvalue = this.value;
+        //alert(modallinkvalue);
+        $("#mymodalLayer_"+modallinkvalue).fadeIn("slow");
+        $(".mymodalContent > button").click(function(){
+            $("#mymodalLayer_"+modallinkvalue).fadeOut("slow");
+            $('.mymodalLink').focus();
+        });
+        $("#mymodalContent_"+modallinkvalue).css({
+         "margin-top" : -$("#mymodalContent_"+modallinkvalue).outerWidth()/2+100, 
+          "margin-left" : -$(".mypage-box").outerHeight()
+          -250
+          
+        });
+        });
+        
+       
+    });
+    $(document).ready(function(){
+     $("#open").click(function(){
+      $("#modal_content").modal(); 
+     });
+     $("#m_close").click(function(){
+      $.modal.close();
+     });
+    }); 
+    
+    $(".confirm_button").click(function(){
+        var cp_id = $("#company_id").val();
+        var id = this.value;
+        var comment = $("#comment_"+id).val();
+        $.ajax({
+            url:'/cp/'+cp_id+'/reservation/'+id+'/confirm',
+            method:"PUT",
+            data:{comment:comment},
+            success:function(data){
+                alert("승인되었습니다.");
+            },
+            error:function(){
+                alert("승인되지않았습니다.");
+             }
+        })
+    });
+    
+    $(".reject_button").click(function(){
+        var cp_id = $("#company_id").val();
+        var id = this.value;
+        var comment = $("#comment_"+id).val();
+        $.ajax({
+            url:'/cp/'+cp_id+'/reservation/'+id+'/reject',
+            method:"PUT",
+            data:{comment:comment},
+            success:function(data){
+                alert("거절되었습니다.");
+            },
+            error:function(){
+                alert("거절되지않았습니다.");
+             }
+        })
+    });
+</script>

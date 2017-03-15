@@ -24,6 +24,10 @@ input:focus{
     outline: none;
 }
 
+textarea:focus{
+    outline: none;
+}
+
 /* nav */
 nav{
     background-color: #F9F9F5;
@@ -77,13 +81,20 @@ nav ul div{
     z-index:100;
     display:flex;
     flex-direction:column;
+    opacity:0.92;
+    margin:0px;
     
 }
 
 .nav-toggle ul{
     display:flex;
     flex-direction:column;
-    
+    margin:20px;
+}
+
+.nav-toggle ul li{
+    padding:13px;
+    border-bottom: 2px solid #fff;
 }
 
 .nav-toggle img{
@@ -402,6 +413,10 @@ section{
     border-top : 2px solid #2A2B2C;
 }
 
+.infor-review p{
+    cursor:pointer;
+}
+
 .company-section-div{
     background-color:#fff;
     border-left : 2px solid #2A2B2C;
@@ -473,7 +488,6 @@ fieldset, label { margin: 0; padding: 0; }
 
 .rating { 
   border: none;
-  float: left;
 }
 
 .rating > input { display: none; } 
@@ -547,9 +561,140 @@ a:active {
     display:flex;
     flex-direction:column;
     align-items:center;
+    width:100%;
 }
 
 
+
+.review-new form span input{
+    width:70%;
+    background-color:#fff;
+    border:none;
+    height:30px;
+    margin-bottom:10px;
+    font-family: 'Godo';
+}
+
+.review-new form span textarea{
+    width:70%;
+    background-color:#fff;
+    border:none;
+    height:100px;
+    margin-bottom:10px;
+    font-family: 'Godo';
+    
+    
+}
+
+.review-new form span input:focus ,.review-new form span textarea:focus{
+    border-bottom:2px solid #000;
+}
+.review-new span{
+    display:flex;
+    flex-direction:row;
+    width:100%;
+    justify-content:center;
+    align-items:center;
+}
+
+.review-new span label{
+    margin-right: 15px;
+}
+
+.review-rating-div{
+    width:70%;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    margin-right:15px;
+}
+
+.review-rating-div .rating{
+}
+
+/* devise-login */
+.devise-login .field input{
+    width:50%;
+    background-color:#fff;
+    border:none;
+    height:30px;
+    margin-bottom:10px;
+}
+
+.devise-login .field input:focus{
+    border-bottom:2px solid #000;
+}
+
+/* reservation */
+#simplemodal-overlay {
+    background-color:none;
+    
+}
+#modal_content{
+    display:none;
+    margin:50 auto;
+    width:200px;
+    height:100px;
+    background:#fff;
+    color:#fff;
+    border:1px solid #000;
+    color:#000;
+    
+}
+
+
+.mymodalLayer{
+  display:none;
+  position:relative;
+}
+.mymodalLayer .mymodalContent{
+  width:440px; 
+  height:230px; 
+  padding:20px; 
+  border:1px solid #ccc; 
+  position:fixed; 
+  left:50%; 
+  top:50%; 
+  z-index:11; 
+  background:#fff;
+  
+}
+.mymodalLayer .mymodalContent .modal_close{
+  position:absolute; 
+  right:0; 
+  top:0; 
+  cursor:pointer;
+  
+}
+
+
+.modalLayer{
+  display:none; 
+  position:absolute;
+  
+}
+
+.modalLayer .modalContent{
+  width:440px; 
+  height:230px;
+  padding:20px; 
+  border:5px solid #263b78; 
+  position:fixed; 
+  left:50%; 
+  top:50%; 
+  z-index:11; 
+  background:#fff;
+  
+}
+
+.modalLayer .modalContent button{
+  position:absolute; 
+  right:0; 
+  top:0; 
+  cursor:pointer;
+  
+  
+}
 
 /*media*/
 
@@ -590,5 +735,9 @@ a:active {
      
      .container{
          width:100%;
+     }
+     
+     .devise-login .field input{
+         width:70%;
      }
 }

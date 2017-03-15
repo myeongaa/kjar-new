@@ -1,0 +1,18 @@
+
+<% if @reservation.confirm_num.to_s == "1" %>
+    <% @status = "대기 중" %>
+<% elsif @reservation.confirm_num.to_s == "2" %>
+    <% @status = "승인" %>
+<% else %>
+    <% @status = "거절" %>
+<% end %>
+
+
+<%= @company.name %>
+<%= @reservation.reserve_time %>
+<%= @reservation.reserve_date %>
+<%= @reservation.requestmenu %>
+<%= @reservation.person_num %>
+<%= @status %>
+
+

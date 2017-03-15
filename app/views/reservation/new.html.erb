@@ -1,0 +1,16 @@
+<%= form_tag(controller: "reservation", action: "create", method: "post") do %>
+    <%= label_tag(:reserve_time, "예약 시간") %>
+    <%= text_field_tag :reserve_time ,nil, :placeholder =>"예약 시간을 입력해주세요." %></br>
+    <%= label_tag(:reserve_date, "예약 날짜") %>
+    <%= text_field_tag :reserve_date ,nil, :placeholder =>"예약 날짜를 입력해주세요." %></br>
+    <%= label_tag(:requestmenu, "요청사항") %>
+    <%= text_field_tag :requestmenu ,nil, :placeholder =>"요청사항을 입력해주세요." %></br>
+    <%= label_tag(:person_num, "인원") %>
+    <%= text_field_tag :person_num ,nil, :placeholder =>"인원을 입력해주세요." %></br>
+    <%= submit_tag("등록") %>
+<% end %>
+
+<script>
+    $("#reserve_time").timepicker();
+    
+</script>

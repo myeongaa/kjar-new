@@ -6,12 +6,17 @@ Rails.application.routes.draw do
   get 'home/search'
   get 'home/:id/sortp' => "home#sort_p" ,:as =>"home_sortp"
   get 'home/:id/sortp_d'=>"home#sort_p_d",:as =>"home_sortpd"
+  get 'users/:id' =>"home#mypage", :as =>"user_mypage"
   resources :cp
   resources :sort
   resources :cp do
     resources :board  
   end
-  
+  resources :cp do
+    resources :reservation
+  end
+  put '/cp/:cp_id/reservation/:id/confirm'=>"reservation#confirm", :as =>"reservation_confirm"
+  put '/cp/:cp_id/reservation/:id/reject'=>"reservation#reject", :as =>"reservation_reject"
   #phonegap_request
   get 'phonegap_request/sort_request'
   get 'phonegap_request/login_request'

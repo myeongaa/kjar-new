@@ -28,6 +28,15 @@ class HomeController < ApplicationController
     @companies_hash = @companies_hash.sort_by {|name,companies_d| companies_d }
   end
   
+  def mypage
+    @user = User.find(params[:id])
+    
+    @reservations = @user.reservations
+    
+    
+    
+  end
+  
   private
   def distance_hash(latitude,longitude,*companies)
     @lat = latitude

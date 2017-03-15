@@ -1,0 +1,13 @@
+<%= @user.email %>
+<%= @user.name %>
+<%= @user.phone%>
+</br>
+<% @reservations.each do |r| %>
+    <%= Company.find(r.company_id).name %> 
+    <%= r.reserve_time %> 
+    <%= r.reserve_date %> 
+    <%= link_to "자세히 보기",cp_reservation_path(r.company_id,r.id)%></br>
+<% end %></br>
+
+
+</br>

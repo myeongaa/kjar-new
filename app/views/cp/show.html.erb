@@ -66,7 +66,8 @@
     </div>
   </div>
   <div class="com-service">
-        여기에 번호표랑 예약넣을꺼양
+        <%= link_to "예약하기", new_cp_reservation_path(@company.id) %>
+        <%= link_to "예약관리", cp_reservation_index_path(@company.id) %>   <!-- 예약관리는 권한설정해서 업체한테만보이게하기! -->
   </div>
 </div>
  
