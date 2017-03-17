@@ -1,76 +1,103 @@
-<!-- 업체 이름-->
-<div class="cp-sort">
-  <span>
-  <%= link_to "홈",home_index_path %> > 
-  <%= link_to @company.csort.name, sort_path(@company.csort.id) %>
-  </span>
-</div>
-<div class="cp-name">
-  <h2><%= @company.name %></h2>
-</div>
-<!-- 정보서비스 -->
-<div class="infor-service">
-  <div class="com-infor">
-    <!-- 정보리뷰 nav -->
-    <div class="infor-review">
-      <div class="infor-review-in"><p class="btn" rel="div1">정보</p></div>
-      <div class="infor-review-re"><p class="btn" rel="div2">리뷰</p></div>
+<div class="infor-com">
+  <div class="infor-service">
+    <!-- 업체 이름-->
+    <div class="cp-sort">
+      <span>
+      <%= link_to "홈",home_index_path %> > 
+      <%= link_to @company.csort.name, sort_path(@company.csort.id) %>
+      </span>
     </div>
-    <!-- 정보 section-->
-    
-    <div id="div1"  class="company-section-div">
-     <div class="company-section">
-         <!-- 업체 정보 -->
-        <%= @company.c_postcode %></br>
-        <%= @company.c_address %></br>
-        <%= @company.c_daddress %></br>
-        <%= @company.tel %></br>
-        <%= @company.opentime %></br>
-        <%= @company.closetime %></br>
-        <%= (@company.runtime)/60 %>분</br>
-        <%= hidden_field_tag :latitude , @company.com_lat %>
-        <%= hidden_field_tag :longitude, @company.com_lng %>
-      
-          <!--<%= link_to "수정", edit_cp_path(@company.id) %>
-              <%= link_to "삭제", cp_path(@company.id), :method => "delete" %>   -->   </div>
-        <!-- 지도 -->
-        <div id="style-selector-control"  class="map-control" >
-          <select id="style-selector" class="selector-control">
-            <option value="default">Default</option>
-            <option value="night">Night mode</option>
-            <option value="retro" selected="selected">Retro</option>
-            <option value="hiding">Hide features</option>
-          </select>
+    <div class="cp-name">
+      <h2><%= @company.name %></h2>
+    </div>
+    <!-- 정보서비스 -->
+      <div class="com-infor">
+        <!-- 정보리뷰 nav -->
+        <div class="infor-review">
+          <div class="infor-review-in"><p class="btn" rel="div1">정보</p></div>
+          <div class="infor-review-re"><p class="btn" rel="div2">리뷰</p></div>
         </div>
-        <div id="map"></div>
-    </div>
-    <!-- 리뷰 section -->
-    <div id="div2" style="display:none"; class="company-section-div">
-      <div class="company-section">
-      <%= link_to "리뷰 남기기", new_cp_board_path(params[:id]) %></br>
-      <%= @boards.length %>개의 리뷰가 있습니다. </br>
-        <% @boards.each do |b| %>
-          <div class="review-row">
-            <fieldset class="rating" >
-              <% for i in 0..(4-b.star.to_i) %>
-                <label class = "full" for="star5" title="Awesome - 5 stars"></label>
+        <!-- 정보 section-->
+        
+        <div id="div1"  class="company-section-div">
+          <div class="com-service2">
+              <p>번호표 중복불가</p>
+              <% if @nticket2 == nil%>
+                <%= link_to image_tag("/image/ticket.png", border: 0), cp_nticket_index_path(params[:id]),method:"post" %>
+              <% else %>
+                <%= link_to image_tag("/image/no_ticket.png", border: 0), cp_nticket_index_path(params[:id]),method:"post",id:"nticket_disabled" %>
+                </br>
               <% end %>
-              <% for i in 1..(b.star.to_i) %>
-                <label class = "full" for="star5" title="Awesome - 5 stars" style="color:#FFD700;"></label>
-              <% end %>
-            </fieldset></br>
-            <span><%= link_to b.title,cp_board_path(@company.id,b.id) %> <%= b.user.email %>님</span>
+              
+              <%= link_to "업체 관리", cp_nticket_index_path(params[:id]) %></br> <!-- 업체 관리는 권한설정해서 업체한테만보이게하기! -->
+              <%= link_to "예약하기", new_cp_reservation_path(params[:id]) %></br>
           </div>
-        <% end %> 
+         <div class="company-section">
+             <!-- 업체 정보 -->
+            <%= @company.c_postcode %></br>
+            <%= @company.c_address %></br>
+            <%= @company.c_daddress %></br>
+            <%= @company.tel %></br>
+            <%= @company.opentime %></br>
+            <%= @company.closetime %></br>
+            <%= (@company.runtime)/60 %>분</br>
+            <%= hidden_field_tag :latitude , @company.com_lat %>
+            <%= hidden_field_tag :longitude, @company.com_lng %>
+          
+              <!--<%= link_to "수정", edit_cp_path(@company.id) %>
+                  <%= link_to "삭제", cp_path(@company.id), :method => "delete" %>   -->   </div>
+            <!-- 지도 -->
+            <div id="style-selector-control"  class="map-control" >
+              <select id="style-selector" class="selector-control">
+                <option value="default">Default</option>
+                <option value="night">Night mode</option>
+                <option value="retro" selected="selected">Retro</option>
+                <option value="hiding">Hide features</option>
+              </select>
+            </div>
+            <div id="map"></div>
+        </div>
+        <!-- 리뷰 section -->
+        <div id="div2" style="display:none"; class="company-section-div">
+          <div class="company-section">
+          <%= link_to "리뷰 남기기", new_cp_board_path(params[:id]) %></br>
+          <%= @boards.length %>개의 리뷰가 있습니다. </br>
+            <% @boards.each do |b| %>
+              <div class="review-row">
+                <fieldset class="rating" >
+                  <% for i in 0..(4-b.star.to_i) %>
+                    <label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                  <% end %>
+                  <% for i in 1..(b.star.to_i) %>
+                    <label class = "full" for="star5" title="Awesome - 5 stars" style="color:#FFD700;"></label>
+                  <% end %>
+                </fieldset></br>
+                <span><%= link_to b.title,cp_board_path(@company.id,b.id) %> <%= b.user.email %>님</span>
+              </div>
+            <% end %> 
+          </div>
+        </div>
       </div>
-    </div>
+    
   </div>
   <div class="com-service">
-        <%= link_to "예약하기", new_cp_reservation_path(@company.id) %>
-        <%= link_to "예약관리", cp_reservation_index_path(@company.id) %>   <!-- 예약관리는 권한설정해서 업체한테만보이게하기! -->
+        
+        <p>번호표 중복불가</p>
+        <% if @nticket2 == nil%>
+          <%= link_to image_tag("/image/ticket.png", border: 0), cp_nticket_index_path(params[:id]),method:"post" %>
+        <% else %>
+          <%= link_to image_tag("/image/no_ticket.png", border: 0), cp_nticket_index_path(params[:id]),method:"post",id:"nticket_disabled" %>
+          </br>
+        <% end %>
+        
+        <%= link_to "업체 관리", cp_nticket_index_path(params[:id]) %></br> <!-- 업체 관리는 권한설정해서 업체한테만보이게하기! -->
+        <%= link_to "예약하기", new_cp_reservation_path(params[:id]) %></br>
+        
+      
   </div>
+     
 </div>
- 
+
 <script type="text/javascript" >
   /* 정보 리뷰 nav */
   $('p').on('click', function(){

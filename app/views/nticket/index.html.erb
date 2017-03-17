@@ -1,0 +1,33 @@
+<%= link_to "예약관리", cp_reservation_index_path(params[:cp_id]) %></br>
+<%= link_to "현장에서 번호표 뽑기", new_cp_nticket_path(params[:cp_id]) %>
+</br>
+<%= hidden_field_tag(:company_id, params[:cp_id]) %>
+번호표</br>
+<% @ntickets.each do |n| %>
+    <% unless n.user_id == nil %>
+        <%= n.ticketnumber %>번 <%= n.user.name %>님 
+        <button class="nticket_complete" value="<%= n.id %>">승인</button></br>
+    <% else %>
+        <%= n.ticketnumber %>번 <%= n.user_name %>님 
+        <button class="nticket_complete" value="<%= n.id %>">승인</button></br>
+    <% end %>
+<% end %>
+
+
+<script>
+    $(".nticket_complete").click(function(){
+        var cp_id = $("#company_id").val();
+        var id = this.value;
+       $.ajax({
+            url:'/cp/'+cp_id+'/nticket/'+id,
+            method:"DELETE",
+            data:{},
+            success:function(data){
+                alert("승인되었습니다.");
+            },
+            error:function(){
+                alert("승인되지않았습니다.");
+             }
+        })
+    });
+</script>

@@ -32,7 +32,7 @@ class HomeController < ApplicationController
     @user = User.find(params[:id])
     
     @reservations = @user.reservations
-    
+    @ntickets = @user.ntickets
     
     
   end

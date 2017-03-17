@@ -1,0 +1,2 @@
+module NticketHelper
+end

@@ -1,0 +1,8 @@
+<%= form_tag(controller: "nticket", action: "create", method: "post") do %>
+    <%= label_tag(:user_name, "이름") %>
+    <%= text_field_tag :user_name ,nil, :placeholder =>"이름을 입력해주세요." %></br>
+    <%= label_tag(:user_phone, "전화번호") %>
+    <%= text_field_tag :user_phone ,nil, :placeholder =>"전화번호를 입력해주세요." %></br>
+    
+    <%= submit_tag("번호표 뽑기") %>
+<% end %>

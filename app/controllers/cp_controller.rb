@@ -32,6 +32,9 @@ class CpController < ApplicationController
     @company = Company.find_by_id(params[:id])
     
     @boards = Board.where(:company_id => params[:id]).reverse
+    
+    @nticket = Nticket.where(:company_id => params[:id])
+    @nticket2 = @nticket.where(:user_id => current_user.id)[0]
   end
 
   def update

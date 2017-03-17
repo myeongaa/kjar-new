@@ -9,5 +9,9 @@
     <%= link_to "자세히 보기",cp_reservation_path(r.company_id,r.id)%></br>
 <% end %></br>
 
-
+<% @ntickets.each do |n| %>
+    <%= Company.find(n.company_id).name %>
+    <%= n.ticketnumber %>번
+    <%= (n.created_at + 32400).strftime("%H:%M:%S") %></br>
+<% end %>
 </br>
