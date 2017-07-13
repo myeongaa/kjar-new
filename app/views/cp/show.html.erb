@@ -21,13 +21,19 @@
         
         <div id="div1"  class="company-section-div">
           <div class="com-service2">
-              <p>번호표 중복불가</p>
-              <% if @nticket2 == nil%>
-                <%= link_to image_tag("/image/ticket.png", border: 0), cp_nticket_index_path(params[:id]),method:"post" %>
+              <p>번호표 중복 불가</p>
+              <% if user_signed_in? %>
+                <% if @nticket2 == nil%>
+                  <%= link_to image_tag("/image/ticket.png", border: 0), cp_nticket_index_path(params[:id]),method:"post" %>
+                <% else %>
+                  <%= link_to image_tag("/image/no_ticket.png", border: 0), cp_nticket_index_path(params[:id]),method:"post",class:"nticket_disabled" %>
+                  </br>
+                <% end %>
               <% else %>
-                <%= link_to image_tag("/image/no_ticket.png", border: 0), cp_nticket_index_path(params[:id]),method:"post",id:"nticket_disabled" %>
-                </br>
+                <p>로그인 후 이용 가능합니다.</p>
+                <%= link_to image_tag("/image/no_ticket.png", border: 0), cp_nticket_index_path(params[:id]),method:"post",class:"nticket_disabled" %>
               <% end %>
+              </br>
               
               <%= link_to "업체 관리", cp_nticket_index_path(params[:id]) %></br> <!-- 업체 관리는 권한설정해서 업체한테만보이게하기! -->
               <%= link_to "예약하기", new_cp_reservation_path(params[:id]) %></br>
@@ -83,12 +89,18 @@
   <div class="com-service">
         
         <p>번호표 중복불가</p>
-        <% if @nticket2 == nil%>
-          <%= link_to image_tag("/image/ticket.png", border: 0), cp_nticket_index_path(params[:id]),method:"post" %>
+        <% if user_signed_in? %>
+          <% if @nticket2 == nil%>
+            <%= link_to image_tag("/image/ticket.png", border: 0), cp_nticket_index_path(params[:id]),method:"post" %>
+          <% else %>
+            <%= link_to image_tag("/image/no_ticket.png", border: 0), cp_nticket_index_path(params[:id]),method:"post",class:"nticket_disabled" %>
+            </br>
+          <% end %>
         <% else %>
-          <%= link_to image_tag("/image/no_ticket.png", border: 0), cp_nticket_index_path(params[:id]),method:"post",id:"nticket_disabled" %>
-          </br>
+          <p>로그인 후 이용 가능합니다.</p>
+          <%= link_to image_tag("/image/no_ticket.png", border: 0), cp_nticket_index_path(params[:id]),method:"post",class:"nticket_disabled" %>
         <% end %>
+        </br>
         
         <%= link_to "업체 관리", cp_nticket_index_path(params[:id]) %></br> <!-- 업체 관리는 권한설정해서 업체한테만보이게하기! -->
         <%= link_to "예약하기", new_cp_reservation_path(params[:id]) %></br>

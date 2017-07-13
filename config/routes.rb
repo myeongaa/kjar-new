@@ -23,6 +23,15 @@ Rails.application.routes.draw do
   get 'phonegap_request/sort_request'
   get 'phonegap_request/login_request'
   
+  get 'androidrequest/login_request'
+  get 'androidrequest/sort_request'
+  get 'androidrequest/company_request'
+  get 'androidrequest/nticket_request'
+  get 'androidrequest/reserve_request'
+  get 'androidrequest/mypage_nticket_request'
+  get 'androidrequest/mypage_reverse_request'
+  get 'androidrequest/nfc_request'
+  get 'androidrequest/nfcdel_request'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

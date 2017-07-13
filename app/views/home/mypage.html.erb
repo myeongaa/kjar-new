@@ -1,17 +1,54 @@
-<%= @user.email %>
-<%= @user.name %>
-<%= @user.phone%>
-</br>
-<% @reservations.each do |r| %>
-    <%= Company.find(r.company_id).name %> 
-    <%= r.reserve_time %> 
-    <%= r.reserve_date %> 
-    <%= link_to "자세히 보기",cp_reservation_path(r.company_id,r.id)%></br>
-<% end %></br>
+<div class="mypage-nav">
+    <div class="mypage_infor"><p class="btn" rel="div1">정보</p></div>
+    <div class="mypage_nticket"><p class="btn" rel="div2">번호표</p></div>
+    <div class="mypage_reservation"><p class="btn" rel="div3">예약</p></div>
+</div>
+<div id="div1"  class="mypage_div">
+    <%= @user.email %>
+    <%= @user.name %>
+    <%= @user.phone%>
+</div>
 
-<% @ntickets.each do |n| %>
-    <%= Company.find(n.company_id).name %>
-    <%= n.ticketnumber %>번
-    <%= (n.created_at + 32400).strftime("%H:%M:%S") %></br>
-<% end %>
-</br>
+<div id="div2"  class="mypage_div" style="display:none;">
+    <table>
+        <tr>
+            <th>업체</th>
+            <th>번호표</th>
+            <th>뽑은시간</th>
+            <th>남은인원</th>
+            <th>예상시간</th>
+            <th>취소</th>
+            <th>추천</th>
+        </tr>
+        <% @ntickets.each do |n| %>
+            <tr>
+                <td><%= Company.find(n.company_id).name %></td>
+                <td><%= n.ticketnumber %>번</td>
+                <td><%= (n.created_at + 32400).strftime("%H:%M:%S") %></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        <% end %>
+    </table>
+    
+       
+</div>
+
+<div id="div3"  class="mypage_div" style="display:none;">
+    <% @reservations.each do |r| %>
+        <%= Company.find(r.company_id).name %> 
+        <%= r.reserve_time %> 
+        <%= r.reserve_date %> 
+        <%= link_to "자세히 보기",cp_reservation_path(r.company_id,r.id)%></br>
+    <% end %></br>
+</div>
+
+<script>
+    $('p').on('click', function(){
+     var target = $(this).attr('rel');
+     $("#"+target).show().siblings(".mypage_div").hide();
+     
+  });
+</script>

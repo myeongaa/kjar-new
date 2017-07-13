@@ -35,6 +35,7 @@ class HomeController < ApplicationController
     @ntickets = @user.ntickets
     
     
+    
   end
   
   private

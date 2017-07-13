@@ -34,7 +34,9 @@ class CpController < ApplicationController
     @boards = Board.where(:company_id => params[:id]).reverse
     
     @nticket = Nticket.where(:company_id => params[:id])
-    @nticket2 = @nticket.where(:user_id => current_user.id)[0]
+    if user_signed_in?
+      @nticket2 = @nticket.where(:user_id => current_user.id)[0]
+    end
   end
 
   def update

@@ -306,22 +306,32 @@ section{
     height:100%;
 }
 .ch-img-1 { 
-	background-image: url(/image/doctor2.png);
-	background-repeat: no-repeat;
-	-webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+	background: url(image/bunsic.png);
+	background-size:cover;
+	background-position:center center;
   
 }
 
 .ch-img-2 { 
-	background-image: url(/image/chef2.png);
+	background-image: url(image/yasic.png);
 	background-repeat: no-repeat;
 	-webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.ch-img-3 { 
+	background: url(image/jongsic.png);
+	background-size:cover;
+	background-position:center center;
+  
+}
+.ch-img-4 { 
+	background: url(image/hansic.png);
+	background-size:cover;
+	background-position:center center;
+  
 }
 
 .ch-info {
@@ -468,10 +478,11 @@ section{
 .com-service p, .com-service2 img{
     font-size: 0.6em;
 }
-.com-service #nticket_disabled{
+.nticket_disabled{
     pointer-events: none;
     cursor: default;
 }
+
 
 #map {
     width:300px;
@@ -718,6 +729,16 @@ a:active {
   
 }
 
+/* mypage */
+
+.mypage-nav{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around;
+    
+}
+
+
 /*media*/
 
 @media screen and (max-width:1024px) {
@@ -787,4 +808,9 @@ a:active {
     .com-service2 img{
         width:50%;
     }
+}
+
+.mypage_div table{
+    margin-left:auto;
+    margin-right: auto;
 }
